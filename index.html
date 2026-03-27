@@ -188,7 +188,7 @@
         function kirimRSVP() {
             const guestName = document.getElementById('guestName').innerText;
             const status = document.querySelector('input[name="status"]:checked').value;
-            const phone = "085787806145";
+            const phone = "6285787806145";
             const message = `Halo, saya ${guestName}. Ingin mengonfirmasi kehadiran: ${status}. Terima kasih!`;
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
         }
