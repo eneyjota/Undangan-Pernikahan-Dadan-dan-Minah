@@ -65,9 +65,7 @@
         }
     </style>
 </head>
-<body>
-
-    <div id="cover">
+<body class="overflow-hidden"> <div id="cover">
         <div class="text-center p-6">
             <p class="text-[10px] tracking-[0.5em] uppercase mb-6 text-gray-500 font-bold">The Wedding of</p>
             <h1 class="font-script text-6xl text-[--sage] mb-12 drop-shadow-sm">Dadan & Minah</h1>
@@ -126,9 +124,10 @@
             <div class="reveal max-w-3xl mx-auto w-full">
                 <h3 class="font-playfair text-3xl mb-10 text-[--sage]">Lokasi Acara</h3>
                 <div class="rounded-3xl overflow-hidden border-[12px] border-white/50 mb-8 shadow-2xl">
-                    <iframe src="https://maps.app.goo.gl/EuYN2WfJsc32mABP9?g_st=ic" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3986.388837319694!2d116.0215708!3d-3.7090854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwNDInMzIuNyJTIDExNsKwMDEnMTcuNyJF!5e0!3m2!1sid!2sid!4v1711550000000!5m2!1sid!2sid" 
+                        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                <a href="https://maps.app.goo.gl/EuYN2WfJsc32mABP9?g_st=ic" target="_blank" class="bg-[--sage] text-white px-10 py-4 rounded-full text-[10px] font-bold tracking-[0.2em] inline-block uppercase shadow-md">Petunjuk Lokasi</a>
+                <a href="https://www.google.com/maps?q=-3.7090854,116.0215708" target="_blank" class="bg-[--sage] text-white px-10 py-4 rounded-full text-[10px] font-bold tracking-[0.2em] inline-block uppercase shadow-md active:scale-95 transition">Petunjuk Lokasi</a>
             </div>
         </section>
 
@@ -149,7 +148,7 @@
                             </label>
                         </div>
                     </div>
-                    <button onclick="kirimRSVP()" class="w-full bg-[--sage] text-white py-4 rounded-xl text-[10px] font-bold tracking-[0.2em] uppercase shadow-md">Kirim Konfirmasi</button>
+                    <button onclick="kirimRSVP()" class="w-full bg-[--sage] text-white py-4 rounded-xl text-[10px] font-bold tracking-[0.2em] uppercase shadow-md active:scale-95 transition">Kirim Konfirmasi</button>
                 </div>
             </div>
         </section>
@@ -164,11 +163,11 @@
     </main>
 
     <nav id="navbar" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 px-8 py-4 rounded-full shadow-2xl flex gap-10 z-50">
-        <a href="#beranda" class="text-[--sage] text-xl"><i class="fa-solid fa-house"></i></a>
-        <a href="#acara" class="text-gray-300 text-xl"><i class="fa-solid fa-calendar-days"></i></a>
-        <a href="#lokasi" class="text-gray-300 text-xl"><i class="fa-solid fa-location-dot"></i></a>
-        <a href="#rsvp" class="text-gray-300 text-xl"><i class="fa-solid fa-clipboard-check"></i></a>
-        <a href="#penutup" class="text-gray-300 text-xl"><i class="fa-solid fa-heart"></i></a>
+        <a href="#beranda" class="text-[--sage] text-xl nav-icon"><i class="fa-solid fa-house"></i></a>
+        <a href="#acara" class="text-gray-300 text-xl nav-icon"><i class="fa-solid fa-calendar-days"></i></a>
+        <a href="#lokasi" class="text-gray-300 text-xl nav-icon"><i class="fa-solid fa-location-dot"></i></a>
+        <a href="#rsvp" class="text-gray-300 text-xl nav-icon"><i class="fa-solid fa-clipboard-check"></i></a>
+        <a href="#penutup" class="text-gray-300 text-xl nav-icon"><i class="fa-solid fa-heart"></i></a>
     </nav>
 
     <audio id="bgMusic" loop>
@@ -204,6 +203,18 @@
                 var elementTop = reveals[i].getBoundingClientRect().top;
                 if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
             }
+
+            // Update warna navbar saat scroll
+            const sections = document.querySelectorAll("section");
+            const navIcons = document.querySelectorAll(".nav-icon");
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 150 && rect.bottom >= 150) {
+                    navIcons.forEach(icon => icon.classList.replace('text-[--sage]', 'text-gray-300'));
+                    navIcons[index].classList.replace('text-gray-300', 'text-[--sage]');
+                }
+            });
         }
         window.addEventListener("scroll", reveal);
     </script>
