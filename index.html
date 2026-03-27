@@ -56,6 +56,13 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(130, 142, 125, 0.1);
         }
+
+        .rsvp-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
     </style>
 </head>
 <body>
@@ -101,14 +108,13 @@
         </section>
 
         <section id="acara" class="py-20 px-6 min-h-screen flex items-center">
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 reveal w-full">
-                <div class="bg-white/80 rounded-3xl p-10 text-center shadow-sm border border-gray-100">
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 reveal w-full text-center">
+                <div class="bg-white/80 rounded-3xl p-10 shadow-sm border border-gray-100">
                     <h3 class="font-playfair text-2xl mb-6 text-[--sage]">Akad Nikah</h3>
                     <p class="font-bold text-sm mb-1">Rabu, 11 Maret 2026</p>
                     <p class="text-sm text-gray-500 mb-6 uppercase tracking-widest">08.00 WITA – Selesai</p>
                 </div>
-
-                <div class="bg-white/80 rounded-3xl p-10 text-center shadow-sm border border-gray-100">
+                <div class="bg-white/80 rounded-3xl p-10 shadow-sm border border-gray-100">
                     <h3 class="font-playfair text-2xl mb-6 text-[--sage]">Resepsi</h3>
                     <p class="font-bold text-sm mb-1">Minggu, 05 April 2026</p>
                     <p class="text-sm text-gray-500 mb-6 uppercase tracking-widest">08.00 WITA – Selesai</p>
@@ -126,6 +132,28 @@
             </div>
         </section>
 
+        <section id="rsvp" class="py-20 px-6 text-center min-h-screen flex items-center justify-center">
+            <div class="reveal max-w-md w-full">
+                <h3 class="font-playfair text-3xl mb-8 text-[--sage]">Konfirmasi Kehadiran</h3>
+                <div class="rsvp-card">
+                    <div class="mb-6 text-left">
+                        <label class="block text-[10px] uppercase tracking-widest text-gray-400 mb-4">Pilih Kehadiran:</label>
+                        <div class="space-y-3">
+                            <label class="flex items-center p-3 border rounded-xl cursor-pointer hover:bg-gray-50 transition">
+                                <input type="radio" name="status" value="Saya Akan Hadir" class="w-4 h-4 text-[--sage] focus:ring-[--sage]" checked>
+                                <span class="ml-3 text-sm text-gray-600">Saya Akan Hadir</span>
+                            </label>
+                            <label class="flex items-center p-3 border rounded-xl cursor-pointer hover:bg-gray-50 transition">
+                                <input type="radio" name="status" value="Saya Tidak Bisa Hadir" class="w-4 h-4 text-[--sage] focus:ring-[--sage]">
+                                <span class="ml-3 text-sm text-gray-600">Saya Tidak Bisa Hadir</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button onclick="kirimRSVP()" class="w-full bg-[--sage] text-white py-4 rounded-xl text-[10px] font-bold tracking-[0.2em] uppercase shadow-md">Kirim Konfirmasi</button>
+                </div>
+            </div>
+        </section>
+
         <section id="penutup" class="py-24 px-8 text-center min-h-screen flex items-center justify-center">
             <div class="reveal">
                 <h2 class="font-script text-5xl text-[--sage] mb-8 text-gray-700">Terima Kasih</h2>
@@ -139,6 +167,7 @@
         <a href="#beranda" class="text-[--sage] text-xl"><i class="fa-solid fa-house"></i></a>
         <a href="#acara" class="text-gray-300 text-xl"><i class="fa-solid fa-calendar-days"></i></a>
         <a href="#lokasi" class="text-gray-300 text-xl"><i class="fa-solid fa-location-dot"></i></a>
+        <a href="#rsvp" class="text-gray-300 text-xl"><i class="fa-solid fa-clipboard-check"></i></a>
         <a href="#penutup" class="text-gray-300 text-xl"><i class="fa-solid fa-heart"></i></a>
     </nav>
 
@@ -154,6 +183,14 @@
             document.body.style.overflow = 'auto';
             document.getElementById('bgMusic').play().catch(e => console.log("Audio play blocked"));
             setTimeout(reveal, 500);
+        }
+
+        function kirimRSVP() {
+            const guestName = document.getElementById('guestName').innerText;
+            const status = document.querySelector('input[name="status"]:checked').value;
+            const phone = "6285787806145";
+            const message = `Halo, saya ${guestName}. Ingin mengonfirmasi kehadiran: ${status}. Terima kasih!`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         const urlParams = new URLSearchParams(window.location.search);
