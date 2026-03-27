@@ -15,6 +15,7 @@
             color: #4a4a4a; 
             overflow-x: hidden; 
             scroll-behavior: smooth;
+            /* MENGGUNAKAN FILE LOKAL SESUAI REPOSITORY */
             background-image: url('bg-cover.JPEG');
             background-size: cover;
             background-position: center;
@@ -65,7 +66,9 @@
         }
     </style>
 </head>
-<body class="overflow-hidden"> <div id="cover">
+<body class="overflow-hidden">
+
+    <div id="cover">
         <div class="text-center p-6">
             <p class="text-[10px] tracking-[0.5em] uppercase mb-6 text-gray-500 font-bold">The Wedding of</p>
             <h1 class="font-script text-6xl text-[--sage] mb-12 drop-shadow-sm">Dadan & Minah</h1>
@@ -124,10 +127,10 @@
             <div class="reveal max-w-3xl mx-auto w-full">
                 <h3 class="font-playfair text-3xl mb-10 text-[--sage]">Lokasi Acara</h3>
                 <div class="rounded-3xl overflow-hidden border-[12px] border-white/50 mb-8 shadow-2xl">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3986.388837319694!2d116.0215708!3d-3.7090854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwNDInMzIuNyJTIDExNsKwMDEnMTcuNyJF!5e0!3m2!1sid!2sid!4v1711550000000!5m2!1sid!2sid" 
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3981.67323608149!2d116.0190001!3d-3.709085399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwNDInMzIuNyJTIDExNsKwMDEnMTcuNyJF!5e0!3m2!1sid!2sid!4v1711545600000!5m2!1sid!2sid" 
                         width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
-                <a href="https://www.google.com/maps?q=-3.7090854,116.0215708" target="_blank" class="bg-[--sage] text-white px-10 py-4 rounded-full text-[10px] font-bold tracking-[0.2em] inline-block uppercase shadow-md active:scale-95 transition">Petunjuk Lokasi</a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=-3.7090854,116.0215708" target="_blank" class="bg-[--sage] text-white px-10 py-4 rounded-full text-[10px] font-bold tracking-[0.2em] inline-block uppercase shadow-md active:scale-95 transition">Petunjuk Lokasi</a>
             </div>
         </section>
 
@@ -204,15 +207,18 @@
                 if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
             }
 
-            // Update warna navbar saat scroll
             const sections = document.querySelectorAll("section");
             const navIcons = document.querySelectorAll(".nav-icon");
             
             sections.forEach((section, index) => {
                 const rect = section.getBoundingClientRect();
                 if (rect.top <= 150 && rect.bottom >= 150) {
-                    navIcons.forEach(icon => icon.classList.replace('text-[--sage]', 'text-gray-300'));
-                    navIcons[index].classList.replace('text-gray-300', 'text-[--sage]');
+                    navIcons.forEach(icon => {
+                        icon.classList.remove('text-[--sage]');
+                        icon.classList.add('text-gray-300');
+                    });
+                    navIcons[index].classList.remove('text-gray-300');
+                    navIcons[index].classList.add('text-[--sage]');
                 }
             });
         }
